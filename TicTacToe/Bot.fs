@@ -16,7 +16,7 @@ module Bot =
     let notLosingMoves =
       game.PossibleMoves
       |> List.filter (fun move -> Game.makeMove game move |> canLose |> not)
-    if List.isEmpty notLosingMoves && notLosingMoves.Length < game.PossibleMoves.Length then None
+    if List.isEmpty notLosingMoves || notLosingMoves.Length < game.PossibleMoves.Length then None
     else Some (notLosingMoves.[random.Next notLosingMoves.Length])
 
   let private pickRandom (game: RunningGame) = 
